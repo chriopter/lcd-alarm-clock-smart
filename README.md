@@ -42,7 +42,7 @@ In my case, the low pass filter prevented wakeup so i pulled a second wire. Also
 
 1.	Set alarm time as usual.
 2.	Configure HomeAssistant to recognize the Sensor and execute actions.
-3.	Power Management: ESP32 will sleep post-alarm, waking only for beeper signals.
+3.	Power Management: ESP32 will sleep post-alarm, waking only for beeper signals. Just re-insert batteries if you want to trigger an ESP Boot.
 
 ## Energy Consumption
 With two AAA batteries (totaling approx. 3,000 mAh at 3.0V), the setup should last over a year on a single charge for the ESP alone.
