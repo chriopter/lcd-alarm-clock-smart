@@ -1,7 +1,7 @@
 # lcd-alarm-clock-smart
 
 ## Overview
-Connect a normal LCD alarm so you can use HA to control blinds, lights, and radio upon alarm activation. Use deep sleep to allow battery operation.
+Connect a normal LCD alarm so you can use HA to control blinds, lights, and radio upon alarm activation. Use deep sleep to allow battery operation on 2xAAA of the alarm clock.
 
 # Installation
 
@@ -10,6 +10,9 @@ Connect a normal LCD alarm so you can use HA to control blinds, lights, and radi
 - Alarm Clock with Beeper (in this case Lexon Flip with DCF77 RTC (i think)
 - ESP32-C3 Microcontroller
 - Low Pass Filter, in my case	Resistor with 10 Ω &	Capacitor (0.1 µF)
+
+## Wiring Power
+- Wire Up 3.3V and GND Pins of the ESP to the Battery. In my testing, the ESP32 even runs on 2xAAA Rechargeable Eneloops (2,4v). 
 
 ## Wiring the Low Pass Filter
 The low pass filter is to smooth the signal from the beeper for correct detection.
