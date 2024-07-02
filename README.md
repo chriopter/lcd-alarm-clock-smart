@@ -3,6 +3,8 @@
 ## Overview
 Connect a normal LCD alarm so you can use HA to control blinds, lights, and radio upon alarm activation. Use deep sleep to allow battery operation.
 
+# Installation
+
 ## Hardware
 
 - Alarm Clock with Beeper (in this case Lexon Flip with DCF77 RTC (i think)
@@ -12,11 +14,18 @@ Connect a normal LCD alarm so you can use HA to control blinds, lights, and radi
 ## Wiring the Low Pass Filter
 The low pass filter is to smooth the signal from the beeper for correct detection.
 -	Connect Beeper -> Resistor -> Capacitator -> GPIO0
-<img width="250" alt="beeper wire" src="https://github.com/chriopter/lcd-alarm-clock-smart/assets/82179548/7b11c165-08b4-4768-8eab-e89434ca4ece">
 
 ## Wiring Wakeup Pin
 In my case, the low pass filter prevented wakeup so i pulled a second wire. Also for this clock, the beeper always receives voltage so wakeup pin must inverted to trigger in ESPHome code.
 - Connect Beeper -> GPIO3
+<img width="250" alt="beeper wire" src="https://github.com/chriopter/lcd-alarm-clock-smart/assets/82179548/70159995-f6fe-46b5-af25-0b57c11fdf90">
+<img width="250" alt="wired" src="https://github.com/chriopter/lcd-alarm-clock-smart/assets/82179548/88678080-b19e-435f-904c-c24c5a8993ec">
+<img width="250" alt="installed" src="https://github.com/chriopter/lcd-alarm-clock-smart/assets/82179548/ed5c5c60-8dab-4e11-a2a2-7f17d929e765">
+<img width="250" alt="finished" src="https://github.com/chriopter/lcd-alarm-clock-smart/assets/82179548/60b2974d-0bf7-4be9-b1dd-fa4bd612b2dd">
+
+
+
+# Usage
 
 ## Flash ESP
 [Use this code](Wecker.yaml)
@@ -24,6 +33,7 @@ In my case, the low pass filter prevented wakeup so i pulled a second wire. Also
 - Alarm wakes it up
 - Waits on definitive Alarm signal to trigger a sensor
 - Deep Sleep after no alarm for 5s or 60s in any case
+<img width="250" alt="signal" src="https://github.com/chriopter/lcd-alarm-clock-smart/assets/82179548/623985fa-9a9c-419d-8a0f-7bb44fc31f5c">
 
 ## Setup
 
