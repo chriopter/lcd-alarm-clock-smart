@@ -12,7 +12,7 @@ Connect a normal LCD alarm so you can use HA to control blinds, lights, and radi
 ## Wiring the Low Pass Filter
 The low pass filter is to smooth the signal from the beeper for correct detection.
 -	Connect Beeper -> Resistor -> Capacitator -> GPIO0
-<img width="580" alt="beeper wire" src="https://github.com/chriopter/lcd-alarm-clock-smart/assets/82179548/7b11c165-08b4-4768-8eab-e89434ca4ece">
+<img width="250" alt="beeper wire" src="https://github.com/chriopter/lcd-alarm-clock-smart/assets/82179548/7b11c165-08b4-4768-8eab-e89434ca4ece">
 
 ## Wiring Wakeup Pin
 In my case, the low pass filter prevented wakeup so i pulled a second wire. Also for this clock, the beeper always receives voltage so wakeup pin must inverted to trigger in ESPHome code.
