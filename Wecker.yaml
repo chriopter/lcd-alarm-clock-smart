@@ -1,0 +1,94 @@
+esphome:
+  name: wecker
+  friendly_name: Wecker
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "x="
+
+ota:
+  - platform: esphome
+    password: "x"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Wecker Fallback Hotspot"
+    password: "x"
+
+captive_portal:
+
+globals:
+  - id: frequency_detected
+    type: int
+    restore_value: no
+    initial_value: '0' 
+  - id: frequency_over_threshold
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+  - id: last_detection_time
+    type: uint32_t
+    restore_value: no
+    initial_value: '0' 
+
+# Sensor for automations
+
+binary_sensor:
+  - platform: template
+    name: "Wecker Ein"
+    device_class: "sound"
+    lambda: 'return id(frequency_over_threshold);'
+
+# At startup, the alarm clock does a single beep. To filter this, only trigger when second beep is detected
+
+sensor:
+  - platform: pulse_counter
+    pin: GPIO0
+    name: "Beeper Signal"
+    update_interval: 1s
+    on_value:
+      then:
+        - lambda: |-
+            if (x > 2000) {
+              id(frequency_detected) += 1;
+              if (id(frequency_detected) >= 2) {
+                id(frequency_over_threshold) = true;
+              }
+              id(last_detection_time) = 0;
+            }
+
+# When more than 5 seconds no beeper is detected, deep sleep
+
+interval:
+  - interval: 1s
+    then:
+      - lambda: |-
+          if (id(frequency_over_threshold)) {
+              id(last_detection_time) += 1;
+              if (id(last_detection_time) >= 5) {
+                  id(frequency_over_threshold) = false;
+                  id(frequency_detected) = 0;
+              }
+          }
+
+# Deep sleep in any case after 60 seconds
+
+deep_sleep:
+  id: my_deep_sleep
+  run_duration: 60s
+  wakeup_pin:
+    number: GPIO3
+    inverted: true
