@@ -52,7 +52,7 @@ binary_sensor:
     device_class: "sound"
     lambda: 'return id(frequency_over_threshold);'
 
-# At startup, the alarm clock does a single beep. To filter this, only trigger when second beep is detected
+# At startup, the alarm clock does a single beep. To filter this, only trigger when second beep is detected, 0.3 polling time can be adjusted depending on length of beep
 
 sensor:
   - platform: pulse_counter
@@ -70,7 +70,7 @@ sensor:
               id(last_detection_time) = 0;
             }
 
-# When more than 5 seconds no beeper is detected, deep sleep
+# Reset beeper state 5 seconds after last beep (reflects snooze)
 
 interval:
   - interval: 1s
@@ -88,7 +88,7 @@ interval:
 
 deep_sleep:
   id: my_deep_sleep
-  run_duration: 30s
+  run_duration: 60s
   wakeup_pin:
     number: GPIO3
     inverted: true
