@@ -58,7 +58,7 @@ sensor:
   - platform: pulse_counter
     pin: GPIO0
     name: "Beeper Signal"
-    update_interval: 1s
+    update_interval: 0.3s
     on_value:
       then:
         - lambda: |-
@@ -84,11 +84,11 @@ interval:
               }
           }
 
-# Deep sleep in any case after 60 seconds
+# Deep sleep after 30 seconds
 
 deep_sleep:
   id: my_deep_sleep
-  run_duration: 60s
+  run_duration: 30s
   wakeup_pin:
     number: GPIO3
     inverted: true
