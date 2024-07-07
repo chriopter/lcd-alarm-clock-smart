@@ -35,7 +35,8 @@ In my case, the low pass filter prevented wakeup so i pulled a second wire. Also
 - ESP is in Deep Sleep
 - Alarm wakes it up
 - Waits on definitive Alarm signal to trigger a sensor
-- Deep Sleep after no alarm for 5s or 60s in any case
+- Reflects snooze with state reset
+- Deep Sleep after 60s (in the future could be kept awake while beeping)
 <img width="250" alt="signal" src="https://github.com/chriopter/lcd-alarm-clock-smart/assets/82179548/623985fa-9a9c-419d-8a0f-7bb44fc31f5c">
 
 ## Setup
