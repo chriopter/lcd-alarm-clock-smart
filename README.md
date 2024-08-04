@@ -12,7 +12,8 @@ Connect a normal LCD alarm so you can use HA to control blinds, lights, and radi
 - Low Pass Filter, in my case	Resistor with 10 Ω &	Capacitor (0.1 µF)
 
 ## Wiring Power
-- Wire Up 3.3V and GND Pins of the ESP to the Battery. In my testing, the ESP32 even runs on 2xAAA Rechargeable Eneloops (2,4v). 
+- Wire Up 3.3V and GND Pins of the ESP to the Battery. In my testing, the ESP32 even runs on 2xAAA Rechargeable Eneloops (2,4v).
+- If unstable, use DC to DC converter to bring input voltage to 3,3/5v.
 
 ## Wiring the Low Pass Filter
 The low pass filter is to smooth the signal from the beeper for correct detection.
